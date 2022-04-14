@@ -1,28 +1,63 @@
-// Le nombre max
-var max = 500; 
 
-// Le nombre cherché
-var searchedNumber = Math.round(Math.random() * max);
 
-// Le nombre saisi
-var enteredNumber = parseInt(prompt('Quel est le nombre à trouver ?'));
 
-// Le nombre d'essais
-var attemps = 1;
+var game = { 
+    score : ['partie0','partie1','partie2','partie3'],
+    price: undefined,
+    attempts: 0,
+} 
 
-// Tant que le nombre saisi n'est pas bon on redemande un nombre
-while (enteredNumber !== searchedNumber) {
-    // on précise si le nombre recherché est inférieur ou supérieur au nombre saisi
-    if (enteredNumber < searchedNumber) {
-        enteredNumber = parseInt(prompt('C\'est plus'));
+function getRandomArbitrary(min, max) {
+     return Math.round(Math.random() * (max - min) + min);
+    } 
+
+
+play()
+
+function play() {
+ 
+    game.price = getRandomArbitrary(10, 20);
+
+    console.log(game.price); 
+
+    var enteredPrice = Number(prompt('Quel est le juste prix entre 10 et 20 ?'));
+ 
+     while (enteredPrice !== game.price) {
+
+        if (enteredPrice > game.price) {
+
+            enteredPrice = Number(prompt("C'est -!"))
+
+        } else { 
+
+            enteredPrice = Number(prompt("C'est +!"))
+        }
+       for(var i=1; i < game.score.length; i++) 
+
+       return game.attempts++
     }
-    else {
-        enteredNumber = parseInt(prompt('C\'est moins'));
-    }
-    // on incrémente le nombre d'essais
-    attemps += 1;
+
+return game.price, enteredPrice;
+    
 }
 
-// on est sorti de la boucle, c'est que le nombre saisi est bien le nombre cherché
-// on affiche un message de victoire
-alert('Bravo ! C\'était bien ' + searchedNumber + ' - Nombre d\'essais : ' + attemps);
+game.score.push(game.attempts++)
+
+alert('congratulation! seulement ' + game.attempts +' tentatives, voulez vous ')
+
+rejouer()
+
+function rejouer() {
+    let rejouer = confirm("Voulez-vous rejouer ?");
+    if (rejouer) {
+        play()
+    } else {
+        alert('c\'est terminé pour aujourd\'hui!')
+    }
+}
+
+
+
+console.log(game.score[1] + ' pour un total de ' + game.attempts + ' aissais')
+
+
